@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import Grid from '@mui/material/Grid';
+import TextPanel from './TextPanel';
+import ControlPanel from './ControlPanel';
+import { useState } from 'react';
+
 import './App.css';
 
+const SERVER_VALUES = ["server1", "server2"];
+
 function App() {
+  const [server, updateServer] = useState(SERVER_VALUES[0]);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <div style={{ backGroundColor: "blue" }}>
+          <ControlPanel
+          server={server}
+          updateServer={updateServer}/>
+          </div>
+        </Grid>
+        <Grid item xs={8}>
+          <div style={{ backGroundColor: "red" }}>
+           <TextPanel
+           server={server}
+          />
+          </div>
+        </Grid>
+      </Grid>
     </div>
   );
 }
